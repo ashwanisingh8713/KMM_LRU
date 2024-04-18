@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.com.android.library)
     alias(libs.plugins.buildConfig)
 }
 
@@ -35,7 +35,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "imageCaching"
             isStatic = true
         }
     }
@@ -63,8 +63,6 @@ kotlin {
             implementation(libs.ktor.json)
             implementation(libs.ktor.logging)
             implementation(libs.ktor.negotiation)
-
-            api(project(":imageCaching"))
         }
 
         commonTest.dependencies {
@@ -97,10 +95,6 @@ android {
         minSdk = 24
         targetSdk = 34
 
-        applicationId = "com.img.cache.androidApp"
-        versionCode = 1
-        versionName = "1.0.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     sourceSets["main"].apply {
@@ -128,9 +122,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.11"
     }
-}
-dependencies {
-    implementation(project(":imageCaching"))
 }
 
 buildConfig {

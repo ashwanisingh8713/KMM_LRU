@@ -3,6 +3,7 @@ package com.img.cache.data.repo
 import androidx.compose.ui.graphics.ImageBitmap
 import com.img.cache.domain.cache.AppLRUCache
 import com.img.cache.domain.repo.My_ICacheData
+import com.img.decoder.ImageBitmapDecoder
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.onDownload
 import io.ktor.client.request.HttpRequestBuilder

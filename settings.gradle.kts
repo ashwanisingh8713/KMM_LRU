@@ -1,5 +1,7 @@
 rootProject.name = "ImageCaching"
-include(":composeApp")
+//include(":composeApp")
+//include(":imageCaching")
+include("composeApp", "imageCaching")
 
 pluginManagement {
     repositories {

@@ -3,4 +3,5 @@ plugins {
     alias(libs.plugins.compose).apply(false)
     alias(libs.plugins.android.application).apply(false)
     alias(libs.plugins.buildConfig).apply(false)
+    alias(libs.plugins.com.android.library) apply false
 }
