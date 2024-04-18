@@ -1,7 +1,7 @@
 package com.img.cache.di
 
 import androidx.compose.ui.graphics.ImageBitmap
-import com.img.cache.data.repo.My_CacheDataImp
+import com.img.cache.data.repo.ImgCacheDataImp
 import com.img.cache.data.repo.My_RemoteDataImp
 import com.img.cache.domain.cache.AppLRUCache
 import com.img.cache.domain.repo.My_ICacheData
@@ -10,7 +10,7 @@ import com.img.cache.domain.repo.My_IRepository
 import com.img.cache.domain.repo.My_RepositoryImp
 import com.img.cache.domain.usecase.My_CacheImageUseCase
 import com.img.cache.domain.usecase.My_RemoteImageUseCase
-import com.img.cache.ui.vm.ImageRequestViewModel
+import com.img.cache.ui.vm.ImageRequestState
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.DEFAULT
@@ -40,7 +40,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     }
 
 val viewModelModule = module {
-    factory { ImageRequestViewModel(get()) }
+    factory { ImageRequestState(get()) }
 }
 
 val useCasesModule: Module = module {
@@ -51,7 +51,7 @@ val useCasesModule: Module = module {
 
 val repositoryModule_3 = module {
     single<My_IRemoteData> { My_RemoteDataImp(get(named("Hello"))) }
-    single<My_ICacheData> { My_CacheDataImp(get(), get()) }
+    single<My_ICacheData> { ImgCacheDataImp(get(), get()) }
     single<My_IRepository> { My_RepositoryImp(get(), get()) }
 }
 

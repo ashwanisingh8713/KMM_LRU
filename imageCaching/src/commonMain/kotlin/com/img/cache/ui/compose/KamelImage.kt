@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -17,16 +16,13 @@ import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import cafe.adriel.voyager.koin.getScreenModel
-import com.img.cache.ui.model.ResultState
-import com.img.cache.ui.vm.ImageRequestViewModel
-import kotlinx.coroutines.launch
+import com.img.cache.ui.model.ImageResultState
+import com.img.cache.ui.vm.ImageRequestState
 import org.koin.compose.getKoin
 
 
 @Composable
 public fun KamelImage(
-    state: ResultState,
     url: String,
     contentDescription: String?,
     modifier: Modifier = Modifier,
@@ -39,10 +35,10 @@ public fun KamelImage(
     contentAlignment: Alignment = Alignment.Center,
 ) {
 
-    val viewModel = getKoin().get<ImageRequestViewModel>()
-    val scope = rememberCoroutineScope()
-    scope.launch {
-        viewModel.loadImage(url)
+    val viewModel = getKoin().get<ImageRequestState>()
+
+    LaunchedEffect(viewModel) {
+        viewModel.loadImage(url, this)
     }
 
     viewModel.resultState.collectAsState()
@@ -86,7 +82,7 @@ public fun KamelImage(
 
 @Composable
 public fun KamelImageBox(
-    state: ResultState,
+    state: ImageResultState,
     //resource: Resource<Painter>,
     modifier: Modifier = Modifier,
     contentAlignment: Alignment = Alignment.Center,
@@ -98,10 +94,10 @@ public fun KamelImageBox(
 
     Box(modifier, contentAlignment) {
             when (state) {
-                is ResultState.Loading -> if (onLoading != null) onLoading()
-                is ResultState.Success -> onSuccess(BitmapPainter(state.bitmap))
-                is ResultState.Failure -> if (onFailure != null) onFailure(state.errorMsg)
-                is ResultState.PlaceHolder -> {}
+                is ImageResultState.Loading -> if (onLoading != null) onLoading()
+                is ImageResultState.Success -> onSuccess(BitmapPainter(state.bitmap))
+                is ImageResultState.Failure -> if (onFailure != null) onFailure(state.errorMsg)
+                is ImageResultState.PlaceHolder -> {}
             }
 
     }

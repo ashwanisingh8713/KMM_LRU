@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.koin.core.component.KoinComponent
 
-abstract class BaseViewModel<State>: ScreenModel, KoinComponent {
+abstract class BaseViewModel<State>: KoinComponent {
 
     protected abstract fun createInitialState():State
     private val initialState: State by lazy { createInitialState() }

@@ -9,5 +9,3 @@ import com.img.cache.ui.GalleryScreen
 internal fun App() = AppTheme {
     Navigator(GalleryScreen())
 }
-
-internal expect fun openUrl(url: String?)
