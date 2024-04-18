@@ -3,7 +3,7 @@ package com.img.cache.data.repo
 import androidx.compose.ui.graphics.ImageBitmap
 import com.img.cache.domain.cache.AppLRUCache
 import com.img.cache.domain.repo.My_ICacheData
-import com.img.decoder.decodeImage
+import com.img.decoder.ImageBitmapDecoder
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.onDownload
 import io.ktor.client.request.HttpRequestBuilder
@@ -35,7 +35,7 @@ class My_CacheDataImp(
             val bytes = response.bodyAsChannel()
 
             try {
-                val bitmap = decodeImage(bytes)
+                val bitmap = ImageBitmapDecoder.decode(bytes)
                 lruCache.put(url, bitmap)
                 return bitmap
             } catch (t: Throwable) {
