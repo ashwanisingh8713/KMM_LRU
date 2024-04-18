@@ -44,12 +44,11 @@ public fun KamelImage(
     scope.launch {
         viewModel.loadImage(url)
     }
-    /*LaunchedEffect(url) {
-        viewModel.loadImage(url)
-    }*/
-    val state = viewModel.resultState.collectAsState()
+
+    viewModel.resultState.collectAsState()
 
     val onSuccess: @Composable (BoxScope.(Painter) -> Unit) = { painter ->
+
         Image(
             painter,
             contentDescription,
@@ -62,7 +61,7 @@ public fun KamelImage(
     }
 
     KamelImageBox(
-        state.value,
+        viewModel.resultState.collectAsState().value,
         modifier,
         contentAlignment,
         onLoading,

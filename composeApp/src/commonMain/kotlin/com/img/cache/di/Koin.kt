@@ -51,9 +51,8 @@ val useCasesModule: Module = module {
 
 val repositoryModule_3 = module {
     single<My_IRemoteData> { My_RemoteDataImp(get(named("Hello"))) }
-    factory<My_ICacheData> { My_CacheDataImp(get(), get()) }
+    single<My_ICacheData> { My_CacheDataImp(get(), get()) }
     single<My_IRepository> { My_RepositoryImp(get(), get()) }
-
 }
 
 val lruCacheModule = module {
