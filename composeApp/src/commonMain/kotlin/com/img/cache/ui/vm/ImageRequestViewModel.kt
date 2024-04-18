@@ -1,9 +1,7 @@
 package com.img.cache.ui.vm
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.ImageBitmap
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.img.cache.domain.cache.AppLRUCache
 import com.img.cache.ui.model.ResultState
 import com.img.cache.domain.usecase.My_CacheImageUseCase
 import kotlinx.coroutines.Dispatchers
@@ -13,12 +11,10 @@ import kotlinx.coroutines.launch
 class ImageRequestViewModel(
     private val cacheImageUseCase: My_CacheImageUseCase
 
-    ) : BaseViewModel<List<ResultState>>() {
+    ) : BaseViewModel<ResultState>() {
 
-    private val lruCache: AppLRUCache<String, ImageBitmap> = AppLRUCache(10)
-
-    override fun createInitialState(): List<ResultState> {
-        return listOf(ResultState.Loading)
+    override fun createInitialState(): ResultState {
+        return ResultState.Loading
     }
 
 
@@ -36,8 +32,7 @@ class ImageRequestViewModel(
                     println("ImageRequestViewModel loadImage: $it")
                     if (it != null) {
                     setState {
-//                            ResultState.Success(it)
-                        this.plus(ResultState.Success(it))
+                            ResultState.Success(it)
                         }
                     }
                 }
