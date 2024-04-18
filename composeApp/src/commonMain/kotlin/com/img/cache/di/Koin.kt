@@ -57,7 +57,7 @@ val repositoryModule_3 = module {
 }
 
 val lruCacheModule = module {
-    single { AppLRUCache<String, ImageBitmap>(16) }
+    factory { AppLRUCache<String, ImageBitmap>(16) }
     single(named("Hello")) { "" }
 }
 

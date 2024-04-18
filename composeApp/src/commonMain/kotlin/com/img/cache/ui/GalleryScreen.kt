@@ -74,7 +74,7 @@ class GalleryScreen: Screen {
         Box(Modifier.fillMaxSize()) {
             LazyVerticalGrid(columns = GridCells.Fixed(2), modifier = Modifier.fillMaxSize()) {
                 items(items) { imageUrl ->
-                    scope.launch { viewModel.loadImage(imageUrl) }
+//                    scope.launch { viewModel.loadImage(imageUrl) }
                     KamelImage(
                         state = state,
                         url = imageUrl,

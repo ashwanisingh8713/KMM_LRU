@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -19,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import cafe.adriel.voyager.koin.getScreenModel
 import com.img.cache.ui.model.ResultState
 import com.img.cache.ui.vm.ImageRequestViewModel
+import kotlinx.coroutines.launch
 import org.koin.compose.getKoin
 
 
@@ -37,11 +39,15 @@ public fun KamelImage(
     contentAlignment: Alignment = Alignment.Center,
 ) {
 
-    /*val viewModel = getKoin().get<ImageRequestViewModel>()
-    LaunchedEffect(url) {
+    val viewModel = getKoin().get<ImageRequestViewModel>()
+    val scope = rememberCoroutineScope()
+    scope.launch {
         viewModel.loadImage(url)
     }
-    val state = viewModel.resultState.collectAsState()*/
+    /*LaunchedEffect(url) {
+        viewModel.loadImage(url)
+    }*/
+    val state = viewModel.resultState.collectAsState()
 
     val onSuccess: @Composable (BoxScope.(Painter) -> Unit) = { painter ->
         Image(
@@ -56,7 +62,7 @@ public fun KamelImage(
     }
 
     KamelImageBox(
-        state,
+        state.value,
         modifier,
         contentAlignment,
         onLoading,
@@ -89,6 +95,8 @@ public fun KamelImageBox(
     onFailure: @Composable (BoxScope.(String) -> Unit)? = null,
     onSuccess: @Composable BoxScope.(Painter) -> Unit,
 ) {
+
+
     Box(modifier, contentAlignment) {
             when (state) {
                 is ResultState.Loading -> if (onLoading != null) onLoading()
