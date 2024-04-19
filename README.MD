@@ -1,11 +1,13 @@
 # Memory Image Caching Compose Multiplatform Application
+This project is a simple image caching application that loads images from the network and caches them in memory.
 
 ## Before running! Need to remove KTOR extra instance
  - check your system with [KDoctor](https://github.com/Kotlin/kdoctor)
  - install JDK 17 or higher on your machine
  - add `local.properties` file to the project root and set a path to Android SDK there
 
-## Source Code Modules Details
+## About the Source Code Detail
+ - I created a separate `imageCaching` module for image caching logic to make it reusable for other projects.
  - The project is built with Kotlin Multiplatform Mobile (KMM) and uses Jetpack Compose for UI.
  - The project is divided into 4 modules: 
    - `imageCaching` - This is Image Caching shared module library that contains the core logic of the image caching
@@ -19,6 +21,7 @@
 ## Code Architecture
  - The project uses Clean & MVVM architecture pattern.
  - The project uses Kotlin Coroutines for asynchronous programming.
+ - Repository pattern is used to abstract the data layer.
 
 ## Used Techs
  - [Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/)
@@ -30,6 +33,14 @@
  - [Kotlin Serialization]
  - [StateHoisting](https://developer.android.com/develop/ui/compose/state#state-hoisting)
 
+## Handled Use Case
+ - The application loads images from the network and caches them in memory.
+ - The application displays a grid of images.
+ - Network error handling and retry mechanism.
+ - Image loading indicator.
+ - Image placeholder.
+ - 
+ 
 
 ### Android
 To run the application on android device/emulator:  
