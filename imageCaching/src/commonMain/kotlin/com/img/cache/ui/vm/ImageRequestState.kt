@@ -7,9 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 
-class ImageRequestState(
+internal class ImageRequestState(
     private val cacheImageUseCase: My_CacheImageUseCase
-    ) : BaseViewModel<ImageResultState>() {
+    ) : BaseRequestState<ImageResultState>() {
 
     override fun createInitialState(): ImageResultState {
         return ImageResultState.Loading

@@ -2,25 +2,28 @@ package com.img.cache
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ApplicationInfo
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.img.cache.di.initKoin
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.logger.Level
+import com.img.app.App
+import com.img.app.di.appDIModules
+import com.img.cache.di.cacheSetup
+import org.koin.core.context.loadKoinModules
+import org.koin.core.context.startKoin
 
 class AndroidApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        initKoin {
-            androidLogger(if (isDebug()) Level.ERROR else Level.NONE)
-            androidContext(this@AndroidApp)
-        }
+        androidKoin()
+    }
+}
+
+fun androidKoin() {
+    startKoin {
+        cacheSetup()
+        loadKoinModules(appDIModules)
     }
 }
 

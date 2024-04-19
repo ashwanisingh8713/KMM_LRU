@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
  * Created by Ashwani on 14 April 2024
  */
 
-abstract class MyBaseUseCase<in Param, out T> (val dispatcher: CoroutineDispatcher) {
+abstract class NetworkBaseUseCase<in Param, out T> (val dispatcher: CoroutineDispatcher) {
 
     abstract suspend fun run(param: Param):T
 

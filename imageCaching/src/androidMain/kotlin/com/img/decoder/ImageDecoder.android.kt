@@ -5,7 +5,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import io.ktor.util.toByteArray
 import io.ktor.utils.io.ByteReadChannel
-import kotlin.reflect.KClass
 
 
 internal actual object ImageBitmapDecoder : ImageDecoder<ImageBitmap> {

@@ -1,11 +1,11 @@
-package com.img.cache.ui.vm
+package com.img.app.ui
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.koin.core.component.KoinComponent
 
-abstract class BaseViewModel<State>: KoinComponent {
+abstract class BaseViewModel<State>: KoinComponent, ScreenModel {
 
     protected abstract fun createInitialState():State
     private val initialState: State by lazy { createInitialState() }

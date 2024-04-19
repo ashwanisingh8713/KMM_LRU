@@ -2,7 +2,7 @@ package com.img.cache.data.repo
 
 import androidx.compose.ui.graphics.ImageBitmap
 import com.img.cache.domain.cache.AppLRUCache
-import com.img.cache.domain.repo.My_ICacheData
+import com.img.cache.domain.repo.ICacheImg
 import com.img.decoder.ImageBitmapDecoder
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.onDownload
@@ -12,10 +12,10 @@ import io.ktor.client.request.url
 import io.ktor.client.statement.bodyAsChannel
 import io.ktor.http.HttpMethod
 
-class ImgCacheDataImp(
+internal class ImgCacheDataImp(
     private val client: HttpClient,
     private val lruCache: AppLRUCache<String, ImageBitmap>
-): My_ICacheData {
+): ICacheImg {
 
     override suspend fun getImageFromCache(url: String): ImageBitmap? {
         val ib = lruCache.get(url)

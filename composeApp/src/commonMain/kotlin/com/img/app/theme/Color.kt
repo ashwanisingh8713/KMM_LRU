@@ -1,4 +1,4 @@
-package com.img.cache.theme
+package com.img.app.theme
 
 import androidx.compose.ui.graphics.Color
 
