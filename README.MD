@@ -1,9 +1,17 @@
-# Compose Multiplatform Application
+# Memory Image Caching Compose Multiplatform Application
 
 ## Before running!
  - check your system with [KDoctor](https://github.com/Kotlin/kdoctor)
  - install JDK 17 or higher on your machine
  - add `local.properties` file to the project root and set a path to Android SDK there
+
+## Code Architecture Details
+ - The project is built with Kotlin Multiplatform Mobile (KMM) and uses Jetpack Compose for UI.
+ - The project is divided into 4 modules: 
+   - `imageCaching` - This is Image Caching shared module library that contains the core logic of the image caching
+   - `composeApp` - Shared app code for Android and iOS, 
+   - `androidApp` - Android specific code, 
+   - `iosApp` - iOS specific code.
 
 ### Android
 To run the application on android device/emulator:  
@@ -19,4 +27,6 @@ To run the application on iPhone device/simulator:
  - Open `iosApp/iosApp.xcproject` in Xcode and run standard configuration
  - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio
 Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
+
+
 
