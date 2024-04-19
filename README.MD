@@ -8,13 +8,13 @@
 ## Code Architecture Details
  - The project is built with Kotlin Multiplatform Mobile (KMM) and uses Jetpack Compose for UI.
  - The project is divided into 4 modules: 
-   1.`imageCaching` - This is Image Caching shared module library that contains the core logic of the image caching
+   - `imageCaching` - This is Image Caching shared module library that contains the core logic of the image caching
      - `imageCaching/commonMain` - Shared code for Android and iOS,
      - `imageCaching/androidMain` - Android Image Decoder,
      - `imageCaching/iosMain` - iOS Image Decoder .
-   2.`composeApp/commonMain` - Shared app code for Android and iOS, 
-   3.`composeApp/androidApp` - Android specific code, 
-   4.`iosApp` - iOS specific code.
+   - `composeApp/commonMain` - Shared app code for Android and iOS, 
+   - `composeApp/androidApp` - Android specific code, 
+   - `iosApp` - iOS specific code.
 
 ### Android
 To run the application on android device/emulator:  
