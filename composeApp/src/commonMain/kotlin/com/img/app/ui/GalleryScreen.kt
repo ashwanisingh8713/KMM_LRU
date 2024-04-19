@@ -34,7 +34,6 @@ import com.img.app.ui.compose.PlaceHolderUI
 import com.img.cache.ui.compose.CacheImage
 
 
-private const val ItemsCount: Int = 1000
 
 class GalleryScreen: Screen {
 
