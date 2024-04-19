@@ -7,8 +7,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 
 class RemoteDataUseCase(private val iRepository: IRemoteRepository,
                         dispatcher: CoroutineDispatcher)
-    : NetworkBaseUseCase<Unit, UnSplashData>(dispatcher) {
-    override suspend fun run(param: Unit): UnSplashData {
+    : NetworkBaseUseCase<Unit, List<UnSplashData>>(dispatcher) {
+    override suspend fun run(param: Unit): List<UnSplashData> {
         return iRepository.getDataFromRemote()
     }
 }

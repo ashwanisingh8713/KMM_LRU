@@ -1,7 +1,5 @@
 package com.img.cache.ui.compose
 
-import androidx.compose.animation.Crossfade
-import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -18,11 +16,14 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import com.img.cache.ui.model.ImageResultState
 import com.img.cache.ui.vm.ImageRequestState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.koin.compose.getKoin
 
 
 @Composable
-public fun KamelImage(
+fun CacheImage(
+    scope: CoroutineScope,
     url: String,
     contentDescription: String?,
     modifier: Modifier = Modifier,
@@ -37,14 +38,14 @@ public fun KamelImage(
 
     val viewModel = getKoin().get<ImageRequestState>()
 
-    LaunchedEffect(viewModel) {
+    scope.launch {viewModel.loadImage(url, this)  }
+    /*LaunchedEffect(viewModel) {
         viewModel.loadImage(url, this)
-    }
+    }*/
 
     viewModel.resultState.collectAsState()
 
     val onSuccess: @Composable (BoxScope.(Painter) -> Unit) = { painter ->
-
         Image(
             painter,
             contentDescription,
@@ -56,7 +57,7 @@ public fun KamelImage(
         )
     }
 
-    KamelImageBox(
+    CacheImageBox(
         viewModel.resultState.collectAsState().value,
         modifier,
         contentAlignment,
@@ -65,32 +66,19 @@ public fun KamelImage(
         onSuccess,
     )
 
-
 }
 
-/**
- * A composable that is used to display a [Painter] resource.
- * To load an image [Resource] asynchronously, use [asyncPainterResource].
- * @param resource The [Resource] that needs to be displayed.
- * @param modifier The modifier that is applied to the [Box].
- * @param contentAlignment The default alignment inside the Box.
- * @param animationSpec a [FiniteAnimationSpec] to be used in [Crossfade] animation, or null to be disabled.
- * @param onLoading Composable which is used while the image is in [Resource.Loading] state.
- * @param onFailure Composable which is used while the image is in [Resource.Failure] state.
- * @param onSuccess Composable which is used while the image is in [Resource.Success] state.
- */
+
 
 @Composable
-public fun KamelImageBox(
+private fun CacheImageBox(
     state: ImageResultState,
-    //resource: Resource<Painter>,
     modifier: Modifier = Modifier,
     contentAlignment: Alignment = Alignment.Center,
     onLoading: @Composable (BoxScope.() -> Unit)? = null,
     onFailure: @Composable (BoxScope.(String) -> Unit)? = null,
     onSuccess: @Composable BoxScope.(Painter) -> Unit,
 ) {
-
 
     Box(modifier, contentAlignment) {
             when (state) {
