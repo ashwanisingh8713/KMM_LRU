@@ -5,6 +5,7 @@ This project is a simple image caching application that loads images from the ne
 
 ## Please make sure, before running the project:
 - JDK 17 or higher on your machine
+- Android Studio Iguana 2023.2.1 or higher
 - Kotlin Multiplatform Mobile plugin installed in Android Studio
 - `local.properties` file set a path to Android SDK
 - To run the application on iOS, you need to have Xcode installed on your machine.

@@ -17,13 +17,15 @@ import androidx.compose.ui.layout.ContentScale
 import com.img.cache.ui.model.ImageResultState
 import com.img.cache.ui.vm.ImageRequestState
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 import org.koin.compose.getKoin
 
+val scope = CoroutineScope(Dispatchers.IO)
 
 @Composable
 fun CacheImage(
-    scope: CoroutineScope,
     url: String,
     contentDescription: String?,
     modifier: Modifier = Modifier,

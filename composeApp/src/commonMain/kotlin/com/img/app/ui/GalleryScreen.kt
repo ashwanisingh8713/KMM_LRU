@@ -12,7 +12,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -27,6 +26,7 @@ import cafe.adriel.voyager.koin.getScreenModel
 import com.img.app.domain.model.UnSplashData
 import com.img.app.ui.compose.ErrorUI
 import com.img.app.ui.compose.LoadingUI
+import com.img.app.ui.compose.PlaceHolderUI
 import com.img.cache.ui.compose.CacheImage
 
 
@@ -73,7 +73,6 @@ class GalleryScreen : Screen {
 
                 items(items) { it ->
                     CacheImage(
-                        scope = rememberCoroutineScope(),
                         url = it.urls.small,
                         contentDescription = null,
                         modifier = Modifier
@@ -84,10 +83,10 @@ class GalleryScreen : Screen {
                             .clip(RoundedCornerShape(16.dp)),
                         contentScale = ContentScale.Crop,
                         onLoading = {
-                            //LoadingUI()
+                            LoadingUI()
                         },
                         onFailure = {
-                            //PlaceHolderUI()
+                            PlaceHolderUI()
                         },
                     )
                 }

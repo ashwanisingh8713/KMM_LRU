@@ -15,6 +15,7 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
 import org.koin.core.context.loadKoinModules
@@ -91,6 +92,6 @@ val ktorModule = module {
 
 
 val dispatcherModule = module {
-    factory { Dispatchers.Default }
+    factory<CoroutineDispatcher> { Dispatchers.Default }
 }
 //fun setupCache() = setupCache {}
