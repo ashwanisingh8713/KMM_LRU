@@ -48,21 +48,20 @@ This project is a simple image caching application that loads images from the ne
  - `iOS` - To Run simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
 
 ## Android
-To build the application bundle:
- - run `./gradlew :composeApp:assembleDebug`
+ - To build, run `./gradlew :composeApp:assembleDebug`
  - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
- - Run android simulator UI tests: `./gradlew :composeApp:pixel5Check`
+ - Android simulator UI tests, run `./gradlew :composeApp:pixel5Check`
  - Android Screenshot
-  - [Try Again]()
-  - [Gallery]()
+  - [Loading](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_loading.png)
+  - [Try Again](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_tryAgain.png)
+  - [Gallery](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_Gallery.png)
 
 ## iOS
-To run the application on iPhone device/simulator:
- - Open `iosApp/iosApp.xcproject` in Xcode and run standard configuration
- - Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
+ - To run, `iosApp/iosApp.xcproject` in Xcode and run standard configuration
+ - iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
  - iOS Screenshot
-   * [Try Again]()
-   * [Gallery]()
+   * [Try Again](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/iOS_tryAgain.png)
+   * [Gallery](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/iOS_Gallery.png)
 
 ### Limitations
  - [Unsplash loads maximum 30 images on each request](https://unsplash.com/documentation#pagination), so the gallery will show only 30 images.
