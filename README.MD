@@ -1,7 +1,7 @@
 # Memory Image Caching Compose Multiplatform Application
 This project is a simple image caching application that loads images from the network and caches them in memory.
 
-Supported platforms: Android, iOS.
+<b>Supported platforms</b>: Android, iOS.
 
 ## Please make sure, before running the project:
 - JDK 17 or higher on your machine
