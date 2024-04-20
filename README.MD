@@ -22,7 +22,7 @@ This project is a simple image caching application that loads images from the ne
    - `iosApp` - iOS specific code.
 
 ## Code Architecture
- - Clean & MVVM architecture pattern.
+ - CLEAN & MVVM architecture pattern.
  - SOLID Principles.
  - The project uses Kotlin Coroutines for asynchronous programming.
  - Repository pattern is used to abstract the data layer.
@@ -36,6 +36,7 @@ This project is a simple image caching application that loads images from the ne
  - [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
  - [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html)
  - [StateHoisting](https://developer.android.com/develop/ui/compose/state#state-hoisting)
+ - [Expect and Actual](https://kotlinlang.org/docs/multiplatform-expect-actual.html)
 
 ## Handled Use Case
  - The application loads images from the network and caches them in memory.
