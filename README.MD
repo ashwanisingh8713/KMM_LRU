@@ -30,9 +30,9 @@ This project is a simple image caching application that loads images from the ne
  - [Jetpack Compose](https://developer.android.com/jetpack/compose)
  - [Ktor](https://ktor.io/)
  - [Koin](https://insert-koin.io/)
- - StateFlow
+ - [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow)
  - [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
- - [Kotlin Serialization]
+ - [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html)
  - [StateHoisting](https://developer.android.com/develop/ui/compose/state#state-hoisting)
 
 ## Handled Use Case
@@ -52,9 +52,9 @@ This project is a simple image caching application that loads images from the ne
  - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
  - Android simulator UI tests, run `./gradlew :composeApp:pixel5Check`
  - Android Screenshot
-  - [Loading](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_loading.png)
-  - [Try Again](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_tryAgain.png)
-  - [Gallery](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_Gallery.png)
+   * [Loading](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_loading.png)
+   * [Try Again](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_tryAgain.png)
+   * [Gallery](https://github.com/ashwanisingh8713/KMM_LRU/blob/lib_working_ios/screenshots/Android_Gallery.png)
 
 ## iOS
  - To run, `iosApp/iosApp.xcproject` in Xcode and run standard configuration
