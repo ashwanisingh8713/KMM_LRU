@@ -1,9 +1,7 @@
 package com.img.app.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,27 +13,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
 import com.img.app.domain.model.UnSplashData
-import com.img.app.ui.compose.EmptyUI
 import com.img.app.ui.compose.ErrorUI
 import com.img.app.ui.compose.LoadingUI
-import com.img.app.ui.compose.PlaceHolderUI
 import com.img.cache.ui.compose.CacheImage
 
 
-
-class GalleryScreen: Screen {
+class GalleryScreen : Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
@@ -51,36 +46,20 @@ class GalleryScreen: Screen {
         when (val state = states.value) {
             // Success
             is UIState.Success -> {
-                if (state.uiRemoteData.isEmpty()) {
-                    EmptyUI(msg = "No Data Found")
-                } else {
-                    Gallery(items = state.uiRemoteData)
-                }
-
+                Gallery(items = state.uiRemoteData)
             }
 
             is UIState.Loading -> {
                 // Loading
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    LoadingUI()
-                }
+                LoadingUI(modifier = Modifier.fillMaxSize())
             }
 
             is UIState.Failure -> {
                 // Error
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    ErrorUI(msg = state.errorMsg) {
-                        viewModel.fetchRemoteData()
-                    }
+                ErrorUI(modifier = Modifier.fillMaxSize(), msg = state.errorMsg) {
+                    viewModel.fetchRemoteData()
                 }
+
             }
         }
 
@@ -89,7 +68,7 @@ class GalleryScreen: Screen {
     @Composable
     fun Gallery(items: List<UnSplashData>) {
 
-        Box(Modifier.fillMaxSize()) {
+        Box(Modifier.fillMaxSize().testTag("Gallery")) {
             LazyVerticalGrid(columns = GridCells.Fixed(2), modifier = Modifier.fillMaxSize()) {
 
                 items(items) { it ->
@@ -110,12 +89,10 @@ class GalleryScreen: Screen {
                         onFailure = {
                             //PlaceHolderUI()
                         },
-
                     )
                 }
             }
         }
-
 
 
     }

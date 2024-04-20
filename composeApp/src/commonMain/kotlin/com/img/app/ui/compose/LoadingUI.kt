@@ -5,6 +5,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 
 @Composable
 fun LoadingUI(
@@ -12,7 +13,7 @@ fun LoadingUI(
 ) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = modifier
+        modifier = modifier.testTag("LoadingUI")
     ) {
         CircularProgressIndicator()
     }

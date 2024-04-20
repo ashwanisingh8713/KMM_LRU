@@ -7,7 +7,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import imagecaching.composeapp.generated.resources.Res
+import imagecaching.composeapp.generated.resources.try_again
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun EmptyUI(
@@ -23,6 +27,7 @@ fun EmptyUI(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
+                modifier = Modifier.testTag("EmptyUIText"),
                 text = msg,
                 style = MaterialTheme.typography.labelLarge
             )
@@ -31,7 +36,7 @@ fun EmptyUI(
                 onClick = onCheckAgain
             ) {
                 Text(
-                    text = "Check Again",
+                    text = stringResource(Res.string.try_again),
                     style = MaterialTheme.typography.labelLarge
                 )
             }

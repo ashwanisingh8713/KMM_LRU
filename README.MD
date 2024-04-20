@@ -1,10 +1,11 @@
 # Memory Image Caching Compose Multiplatform Application
 This project is a simple image caching application that loads images from the network and caches them in memory.
 
-## Before running! Need to remove KTOR extra instance
- - check your system with [KDoctor](https://github.com/Kotlin/kdoctor)
- - install JDK 17 or higher on your machine
- - add `local.properties` file to the project root and set a path to Android SDK there
+## Please make sure, before running the project:
+- JDK 17 or higher on your machine
+- Kotlin Multiplatform Mobile plugin installed in Android Studio
+- `local.properties` file set a path to Android SDK
+- To run the application on iOS, you need to have Xcode installed on your machine.
 
 ## About the Source Code Detail
  - I created a separate `imageCaching` module for image caching logic to make it reusable for other projects.
@@ -19,7 +20,8 @@ This project is a simple image caching application that loads images from the ne
    - `iosApp` - iOS specific code.
 
 ## Code Architecture
- - The project uses Clean & MVVM architecture pattern.
+ - Clean & MVVM architecture pattern.
+ - SOLID Principles.
  - The project uses Kotlin Coroutines for asynchronous programming.
  - Repository pattern is used to abstract the data layer.
 
@@ -39,23 +41,32 @@ This project is a simple image caching application that loads images from the ne
  - Network error handling and retry mechanism.
  - Image loading indicator.
  - Image placeholder.
- - 
- 
 
-### Android
-To run the application on android device/emulator:  
- - open project in Android Studio and run imported android run configuration
+## Compose Unit Tests
+ - The project contains compose unit tests for the composeApp module.
+ - `Android` - To Run simulator UI tests: `./gradlew :composeApp:pixel5Check`
+ - `iOS` - To Run simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
 
+## Android
 To build the application bundle:
  - run `./gradlew :composeApp:assembleDebug`
  - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
-Run android simulator UI tests: `./gradlew :composeApp:pixel5Check`
+ - Run android simulator UI tests: `./gradlew :composeApp:pixel5Check`
+ - Android Screenshot
+  - [Try Again]()
+  - [Gallery]()
 
-### iOS
+## iOS
 To run the application on iPhone device/simulator:
  - Open `iosApp/iosApp.xcproject` in Xcode and run standard configuration
- - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio
-Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
+ - Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
+ - iOS Screenshot
+   * [Try Again]()
+   * [Gallery]()
 
+### Limitations
+ - [Unsplash loads maximum 30 images on each request](https://unsplash.com/documentation#pagination), so the gallery will show only 30 images.
+ - As of now the application does not have a pagination feature.
+ - API Key is hardcoded in the project, it should be stored in a secure place. If I would have not kept in the project, you would not be able to run the project directly.
 
 

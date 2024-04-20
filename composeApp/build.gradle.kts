@@ -74,6 +74,9 @@ kotlin {
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.uiTest)
             implementation(libs.kotlinx.coroutines.test)
+
+//            implementation(libs.voyager.navigator)
+//            implementation(libs.voyager.koin)
         }
 
         androidMain.dependencies {
